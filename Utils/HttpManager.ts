@@ -6,7 +6,7 @@ let fs = require('fs');
 
 export module HttpManager {
     export function PostGottenDataRequest(getApiUrl, postApiUrl, getFormDataToPost, sendInfoKey: string, fileNameWriteGet: string, fileNameWritePost ) {
-        console.log(`----Send get request to ${getApiUrl}`)
+        console.log(`====Send get request to ${getApiUrl}`)
         let flow = protractor.promise.controlFlow();
         var writeStream = fs.createWriteStream(fileNameWriteGet);
         let result = flow.execute(function() {
@@ -25,10 +25,9 @@ export module HttpManager {
         
             return defer.promise;
         });
-}
+    }
 
     
-
     function SendPostRequest(apiUrl,formData, filneNameWrite: string) {
         console.log(`====Send post to ${apiUrl}, response will be written to file ${filneNameWrite}`);
         let flow = protractor.promise.controlFlow();
@@ -38,15 +37,13 @@ export module HttpManager {
         request(apiUrl, formData, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 defer.fulfill(body);
-            }
-        }).pipe(writeStream);
+                }
+            }).pipe(writeStream);
     
-        defer.promise.then(function(data) {
-         console.log(`====${data}`);
-        });
-    
-        return defer.promise;
-        });
+                defer.promise.then(function(data) {
+                console.log(`====data from response on post request: ${data}`);
+            });
+                return defer.promise;
+            });
+        }
     }
-
-}

@@ -5,6 +5,4 @@ export module NasaApi {
         console.log(`====Prepare get string with parametrs: Data of picture = ${picDate}, quality of picture isHd = ${isHd}`)
         return `${NasaApiUrl}?api_key=${APIKEY}&date=${picDate}&hd=${isHd}`;
     }
-
-
 }

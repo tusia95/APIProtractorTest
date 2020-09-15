@@ -10,6 +10,5 @@ export module PastebinApi {
         return{form: {api_dev_key: DEVKEY2,
                 api_option: "paste",
                 api_paste_code: textToPaste}}
-    };
-   
+    };   
 }
